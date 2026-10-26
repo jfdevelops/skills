@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, realpath } from 'node:fs/promises';
 import { basename, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readSkillFiles } from './skill-files.mjs';
 
 const packageRoot = fileURLToPath(new URL('../', import.meta.url));
 
@@ -51,6 +52,17 @@ export async function validatePackage(root) {
 
     assert.equal(basename(directory), entry.name);
     validateSkill(await readFile(file, 'utf8'), entry.name);
+    const resources = await readSkillFiles(directory);
+
+    for (const [path, content] of resources) {
+      if (!path.endsWith('.md')) {
+        continue;
+      }
+
+      for (const match of content.toString('utf8').matchAll(/\]\((references\/[^)]+)\)/g)) {
+        assert(resources.has(match[1]), `Missing skill reference: ${entry.name}/${match[1]}`);
+      }
+    }
   }
 
   const directories = (await readdir(resolve(root, 'skills'), { withFileTypes: true }))

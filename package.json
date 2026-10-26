@@ -42,12 +42,8 @@
         "path": "./skills/jf-coding-conventions"
       },
       {
-        "name": "jf-commit-conventions",
-        "path": "./skills/jf-commit-conventions"
-      },
-      {
-        "name": "jf-git-workflow",
-        "path": "./skills/jf-git-workflow"
+        "name": "jf-git",
+        "path": "./skills/jf-git"
       }
     ]
   }
