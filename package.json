@@ -1,0 +1,50 @@
+{
+  "name": "@jfdevelops/skills",
+  "version": "0.1.0",
+  "description": "Shared, portable agent skills for jfdevelops projects",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfdevelops/skills.git"
+  },
+  "files": [
+    "skills",
+    "schemas"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./schemas/package-skills.schema.json": "./schemas/package-skills.schema.json"
+  },
+  "packageManager": "pnpm@10.28.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test",
+    "check": "pnpm validate && pnpm test && pnpm skills:check && node scripts/check-package.mjs",
+    "prepack": "pnpm validate",
+    "skills:sync": "node scripts/sync-agent-skills.mjs",
+    "skills:check": "node scripts/sync-agent-skills.mjs . --check"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "jfdevelops": {
+    "skills": [
+      {
+        "name": "jf-naming-conventions",
+        "path": "./skills/jf-naming-conventions"
+      },
+      {
+        "name": "jf-coding-conventions",
+        "path": "./skills/jf-coding-conventions"
+      },
+      {
+        "name": "jf-commit-conventions",
+        "path": "./skills/jf-commit-conventions"
+      }
+    ]
+  }
+}
