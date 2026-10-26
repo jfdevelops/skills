@@ -1,6 +1,6 @@
 # @jfdevelops/skills
 
-Shared agent conventions, versioned independently of the jfdevelops CLI. This initial release contains naming, coding, commit, and Git workflow conventions. Each skill uses a portable `SKILL.md` with `name` and `description` frontmatter; its body uses ordinary project tools instead of agent-specific APIs.
+Shared agent conventions, versioned independently of the jfdevelops CLI. This initial release contains naming, coding, and unified Git conventions. Each skill uses a portable `SKILL.md` with `name` and `description` frontmatter; its body uses ordinary project tools instead of agent-specific APIs.
 
 ## Bundled skills
 
@@ -8,8 +8,7 @@ Shared agent conventions, versioned independently of the jfdevelops CLI. This in
 | --- | --- |
 | [jf-naming-conventions](skills/jf-naming-conventions/SKILL.md) | Naming files, directories, symbols, packages, or APIs |
 | [jf-coding-conventions](skills/jf-coding-conventions/SKILL.md) | Implementing or reviewing JavaScript, TypeScript, or React |
-| [jf-git-workflow](skills/jf-git-workflow/SKILL.md) | Initializing Git or starting a section or idea |
-| [jf-commit-conventions](skills/jf-commit-conventions/SKILL.md) | Staging for a commit or preparing a commit |
+| [jf-git](skills/jf-git/SKILL.md) | Any Git decision; check repository conventions first, then read the branch, commit, or PR reference |
 
 These skills choose no optional integrations. Portless, Convex, TanStack, and jfdevelops library guidance belongs to separately selected addons or package-owned skills.
 
@@ -52,3 +51,9 @@ Canonical skill content lives in `skills/`. Agent discovery copies in `.agents/s
 ## Release status
 
 Version `0.1.0` is prepared locally, not published. CI validates metadata, tests invalid declarations, checks generated copies, and inspects npm package contents. Publishing is a separate authorized action. Consumers should pin a released version; updates should be explicit.
+
+## Unified Git skill
+
+All Git guidance lives under `skills/jf-git/`: `SKILL.md` is the master entry point, with `references/branches.md`, `references/commits.md`, and `references/pull-requests.md` loaded for their tasks. Current user instructions and applicable repository conventions take precedence over shared defaults. Read the current repo again when moving between repositories.
+
+Synchronization copies every skill resource, and provenance records per-file hashes. The former `jf-git-workflow` and `jf-commit-conventions` registrations are replaced by `jf-git`; remove unchanged managed copies of the old skills during migration, preserving local edits for review.
