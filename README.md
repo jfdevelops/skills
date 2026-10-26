@@ -1,6 +1,6 @@
 # @jfdevelops/skills
 
-Shared agent conventions, versioned independently of the jfdevelops CLI. This initial release contains naming, coding, and commit conventions. Each skill uses a portable `SKILL.md` with `name` and `description` frontmatter; its body uses ordinary project tools instead of agent-specific APIs.
+Shared agent conventions, versioned independently of the jfdevelops CLI. This initial release contains naming, coding, commit, and Git workflow conventions. Each skill uses a portable `SKILL.md` with `name` and `description` frontmatter; its body uses ordinary project tools instead of agent-specific APIs.
 
 ## Bundled skills
 
@@ -8,6 +8,7 @@ Shared agent conventions, versioned independently of the jfdevelops CLI. This in
 | --- | --- |
 | [jf-naming-conventions](skills/jf-naming-conventions/SKILL.md) | Naming files, directories, symbols, packages, or APIs |
 | [jf-coding-conventions](skills/jf-coding-conventions/SKILL.md) | Implementing or reviewing JavaScript, TypeScript, or React |
+| [jf-git-workflow](skills/jf-git-workflow/SKILL.md) | Initializing Git or starting a section or idea |
 | [jf-commit-conventions](skills/jf-commit-conventions/SKILL.md) | Staging for a commit or preparing a commit |
 
 These skills choose no optional integrations. Portless, Convex, TanStack, and jfdevelops library guidance belongs to separately selected addons or package-owned skills.

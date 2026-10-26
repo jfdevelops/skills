@@ -8,8 +8,15 @@ import { validatePackage, validateSkill } from '../scripts/validate.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 
-test('the actual package registers all three portable skills', async () => {
-  assert.equal((await validatePackage(root)).length, 3);
+test('the actual package registers every required convention skill', async () => {
+  const entries = await validatePackage(root);
+
+  assert.deepEqual(entries.map((entry) => entry.name).sort(), [
+    'jf-coding-conventions',
+    'jf-commit-conventions',
+    'jf-git-workflow',
+    'jf-naming-conventions',
+  ]);
 });
 
 test('a skill must have matching metadata and substantive content', () => {
