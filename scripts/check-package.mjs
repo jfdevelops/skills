@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
+import { execSync } from 'node:child_process';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -12,7 +12,12 @@ const cache = await mkdtemp(join(tmpdir(), 'jf-skills-pack-'));
 
 try {
   const entries = await validatePackage(root);
-  const output = execFileSync('npm', ['pack', '--dry-run', '--json', '--ignore-scripts', '--cache', cache], { cwd: root, encoding: 'utf8' });
+  // execSync runs through a shell, which Windows needs to launch npm.cmd.
+  const output = execSync('npm pack --dry-run --json --ignore-scripts', {
+    cwd: root,
+    encoding: 'utf8',
+    env: { ...process.env, npm_config_cache: cache },
+  });
   const [pack] = JSON.parse(output);
   const paths = new Set(pack.files.map((file) => file.path));
 
