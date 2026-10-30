@@ -56,4 +56,4 @@ Releases are managed with [Changesets](.changeset/README.md). CI validates metad
 
 All Git guidance lives under `skills/jf-git/`: `SKILL.md` is the master entry point, with `references/branches.md`, `references/commits.md`, and `references/pull-requests.md` loaded for their tasks. Current user instructions and applicable repository conventions take precedence over shared defaults. Read the current repo again when moving between repositories.
 
-Synchronization copies every skill resource, and provenance records per-file hashes. The former `jf-git-workflow` and `jf-commit-conventions` registrations are replaced by `jf-git`; remove unchanged managed copies of the old skills during migration, preserving local edits for review.
+Synchronization copies every skill resource, and provenance records per-file hashes and a skill digest: the SHA-256 of `<file hash>  <path>` lines for every resource, sorted by path. The former `jf-git-workflow` and `jf-commit-conventions` registrations are replaced by `jf-git`; remove unchanged managed copies of the old skills during migration, preserving local edits for review.

@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { hashSkillFiles } from '../scripts/skill-files.mjs';
 import { validatePackage, validateSkill } from '../scripts/validate.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -94,4 +95,17 @@ test('sync preserves all Git references and detects edits to a generated referen
   } finally {
     await rm(target, { recursive: true, force: true });
   }
+});
+
+test('the skill digest covers every resource, not only SKILL.md', () => {
+  const skill = Buffer.from('---\nname: sample\ndescription: Sample skill.\n---\n# Sample\n');
+  const notes = Buffer.from('Notes\n');
+  const original = hashSkillFiles(new Map([['SKILL.md', skill], ['references/notes.md', notes]]));
+  const edited = hashSkillFiles(new Map([['SKILL.md', skill], ['references/notes.md', Buffer.from('Edited\n')]]));
+  const reordered = hashSkillFiles(new Map([['references/notes.md', notes], ['SKILL.md', skill]]));
+
+  assert.equal(original.files['SKILL.md'], edited.files['SKILL.md']);
+  assert.notEqual(original.sha256, original.files['SKILL.md']);
+  assert.notEqual(original.sha256, edited.sha256);
+  assert.equal(original.sha256, reordered.sha256);
 });

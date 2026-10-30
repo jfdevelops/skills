@@ -1,9 +1,8 @@
-import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validatePackage } from './validate.mjs';
-import { readSkillFiles } from './skill-files.mjs';
+import { hashSkillFiles, readSkillFiles } from './skill-files.mjs';
 
 const source = fileURLToPath(new URL('../', import.meta.url));
 const target = resolve(process.argv[2] ?? source);
@@ -15,11 +14,9 @@ const skills = [];
 
 for (const entry of entries) {
   const resources = await readSkillFiles(resolve(source, entry.path));
-  const hashes = {};
+  const { sha256, files: hashes } = hashSkillFiles(resources);
 
   for (const [path, content] of resources) {
-    hashes[path] = createHash('sha256').update(content).digest('hex');
-
     for (const directory of ['.agents/skills', '.claude/skills', '.cursor/skills', '.github/skills']) {
       files.set(`${directory}/${entry.name}/${path}`, content);
     }
@@ -29,7 +26,7 @@ for (const entry of entries) {
     name: entry.name,
     required: true,
     source: { package: manifest.name, version: manifest.version, path: entry.path },
-    sha256: hashes['SKILL.md'],
+    sha256,
     files: hashes,
   });
 }
