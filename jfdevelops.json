@@ -6,7 +6,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.1.0",
+        "version": "0.0.0",
         "path": "./skills/jf-naming-conventions"
       },
       "sha256": "c1ea6bed067f524b497da315fa3921a2cebfff2f563bae885112b656197033a9",
@@ -19,7 +19,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.1.0",
+        "version": "0.0.0",
         "path": "./skills/jf-coding-conventions"
       },
       "sha256": "26a9c9a5cadf7411854b77fbfe6c5e4b0395aa7954c6d4c7523aeb63726fdec9",
@@ -32,7 +32,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.1.0",
+        "version": "0.0.0",
         "path": "./skills/jf-git"
       },
       "sha256": "6821cf9a9b7f657d3655a12618a9858fdbb14b24db03e8d65f52f8290b5ed21d",
