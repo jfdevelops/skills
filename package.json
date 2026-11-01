@@ -1,6 +1,6 @@
 {
   "name": "@jfdevelops/skills",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Shared, portable agent skills for jfdevelops projects",
   "type": "module",
   "license": "MIT",
@@ -26,10 +26,14 @@
     "check": "pnpm validate && pnpm test && pnpm skills:check && node scripts/check-package.mjs",
     "prepack": "pnpm validate",
     "skills:sync": "node scripts/sync-agent-skills.mjs",
-    "skills:check": "node scripts/sync-agent-skills.mjs . --check"
+    "skills:check": "node scripts/sync-agent-skills.mjs . --check",
+    "changeset": "changeset",
+    "version-packages": "changeset version && pnpm skills:sync",
+    "release": "pnpm check && changeset publish"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "jfdevelops": {
     "skills": [
@@ -46,5 +50,8 @@
         "path": "./skills/jf-git"
       }
     ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3"
   }
 }

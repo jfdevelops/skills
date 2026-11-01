@@ -50,7 +50,7 @@ Canonical skill content lives in `skills/`. Agent discovery copies in `.agents/s
 
 ## Release status
 
-Version `0.1.0` is prepared locally, not published. CI validates metadata, tests invalid declarations, checks generated copies, and inspects npm package contents. Publishing is a separate authorized action. Consumers should pin a released version; updates should be explicit.
+Releases are managed with [Changesets](.changeset/README.md). CI validates metadata, tests invalid declarations, checks generated copies, inspects npm package contents, and requires a changeset on every pull request. Merging to `main` opens a version pull request for pending changesets; merging that pull request publishes the new version to npm with provenance. Consumers should pin a released version; updates should be explicit.
 
 ## Unified Git skill
 
