@@ -23,7 +23,8 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "test": "node --test",
-    "check": "pnpm validate && pnpm test && pnpm skills:check && node scripts/check-package.mjs",
+    "check": "pnpm validate && pnpm test && pnpm skills:check && node scripts/check-package.mjs && pnpm installer:check",
+    "installer:check": "node scripts/check-installer.mjs",
     "prepack": "pnpm validate",
     "skills:sync": "node scripts/sync-agent-skills.mjs",
     "skills:check": "node scripts/sync-agent-skills.mjs . --check",
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "@changesets/cli": "^3.0.3"
+    "@changesets/cli": "^3.0.3",
+    "skills": "1.7.4"
   }
 }

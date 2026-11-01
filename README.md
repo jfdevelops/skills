@@ -12,6 +12,32 @@ Shared agent conventions, versioned independently of the jfdevelops CLI. This in
 
 These skills choose no optional integrations. Portless, Convex, TanStack, and jfdevelops library guidance belongs to separately selected addons or package-owned skills.
 
+## Install
+
+Install the skills from GitHub with the [`skills` CLI](https://github.com/vercel-labs/skills) (Node.js 22.20 or newer). Run it from your project root; it lets you choose skills and agents interactively:
+
+```sh
+npx skills add jfdevelops/skills
+```
+
+Install everything for specific agents without prompts:
+
+```sh
+npx skills add jfdevelops/skills --skill jf-naming-conventions jf-coding-conventions jf-git --agent claude-code cursor github-copilot codex --yes
+```
+
+Skills are copied into `.agents/skills/`, which Cursor, GitHub Copilot, Codex, and other agents read directly. Claude Code gets links in `.claude/skills/`. Add `--copy` where symlinks are unavailable, or `--global` to install for every project. The CLI records each skill's source and content hash in `skills-lock.json`; commit it with the installed skills.
+
+Each release creates a `v<version>` tag. Pin one for reproducible installs, and update explicitly:
+
+```sh
+npx skills add jfdevelops/skills#v0.1.0
+npx skills check
+npx skills update
+```
+
+The skills load from their descriptions when an agent's task matches. To require them, point your project's `AGENTS.md` (or equivalent) at each installed `SKILL.md`, as this repository's [AGENTS.md](AGENTS.md) does. `pnpm check` installs this checkout with a pinned `skills` CLI and verifies every registered skill arrives intact.
+
 ## Package discovery
 
 `package.json` declares the public discovery contract:
