@@ -26,6 +26,15 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
       - run: pnpm install --frozen-lockfile
+      # changesets/action neither versions nor publishes while only empty changesets are
+      # pending, and every tooling PR adds one. They carry no releases, so drop them here.
+      - name: Drop empty changesets
+        run: |
+          for file in .changeset/*.md; do
+            if [ "$(basename "$file")" != README.md ] && [ "$(sed -n 2p "$file")" = "---" ]; then
+              rm "$file"
+            fi
+          done
       - uses: changesets/action@v2
         with:
           version-script: pnpm version-packages
