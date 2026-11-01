@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
@@ -25,4 +26,26 @@ export async function readSkillFiles(directory, prefix = '') {
   }
 
   return files;
+}
+
+function sha256(content) {
+
+  return createHash('sha256').update(content).digest('hex');
+}
+
+// The skill digest covers every resource: it hashes a sha256sum-style manifest of
+// `<file hash>  <path>` lines sorted by path code units, independent of locale.
+export function hashSkillFiles(resources) {
+  const files = {};
+
+  for (const [path, content] of resources) {
+    files[path] = sha256(content);
+  }
+
+  const manifest = Object.keys(files)
+    .sort((left, right) => (left < right ? -1 : left > right ? 1 : 0))
+    .map((path) => `${files[path]}  ${path}\n`)
+    .join('');
+
+  return { sha256: sha256(manifest), files };
 }
