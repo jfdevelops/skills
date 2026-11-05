@@ -1,5 +1,11 @@
 # @jfdevelops/skills
 
+## 0.1.1
+
+### Patch Changes
+
+- 5cb6b4f: Stop requiring a blank line after an opening brace before a leading `return` in the coding conventions.
+
 ## 0.1.0
 
 ### Minor Changes
