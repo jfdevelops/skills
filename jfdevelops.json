@@ -42,6 +42,19 @@
         "references/pull-requests.md": "680d61f55251d79d4d1dbd2bbae3a5f1711c2fcb1007f7d2dcea4899a27fb70e",
         "SKILL.md": "6821cf9a9b7f657d3655a12618a9858fdbb14b24db03e8d65f52f8290b5ed21d"
       }
+    },
+    {
+      "name": "jf-docs",
+      "required": true,
+      "source": {
+        "package": "@jfdevelops/skills",
+        "version": "0.1.1",
+        "path": "./skills/jf-docs"
+      },
+      "sha256": "3c8a98f6c55792b971cf0a9e7e8fbc8fdc83e82ba781acc35b32f18b4272ea61",
+      "files": {
+        "SKILL.md": "de7e386750435dce2ede1d7413d09f7900f33694500dbd3a170d77b8e862646b"
+      }
     }
   ]
 }
