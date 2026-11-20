@@ -39,7 +39,8 @@ docs/
       installation.md        quick-start, typescript, devtools
       guides/*.md            how-to guides, troubleshooting, migration
       plugins/*.md           companion packages
-      reference/             generated API reference
+      reference/             current major: generated API reference, never committed
+                             earlier majors: hand-written reference/api.md
       assets/*               images only
   maintainers/               contributor notes, never public
 ```
@@ -51,9 +52,30 @@ docs/
   rather than leaving a stub.
 - Generate navigation from the pages. Do not keep hand-written ordering files in
   sync with frontmatter.
-- Never hand-write API reference. Link to the generated reference instead of
-  copying signatures into a guide.
+- Never edit the current major's generated reference. Earlier majors keep a
+  hand-written `reference/api.md` that the generator never touches; correct it
+  directly, checked against that major's last release tag.
+- Link to the reference instead of copying signatures into a guide:
+  `reference/index.md` or a page under it in the current major, and
+  `reference/api.md` in earlier majors.
 - Never link a public page to maintainer notes.
+
+### When a new major ships
+
+The generator writes a reference only for the current major, and that reference is
+never committed. Without these steps the outgoing major is left with none. Do them
+in one change, before or with the version bump:
+
+1. Write `reference/api.md` for the outgoing major by hand. Take the exports from the
+   package entry points at that major's last release tag, and name the version and
+   tag in the intro. Don't copy the generated output: it spans many pages and is
+   marked as generated, so the docs check rejects it outside the current major.
+   Delete the generated pages from that `reference/` folder, so only `api.md` is left.
+2. In the outgoing major's pages, change links from `reference/index.md` and its
+   subpages to `reference/api.md`, with anchors that exist there.
+3. Add the `v<major>/` directory for the new major. If the project ignores the
+   generated reference by path, move that ignore entry to the new major.
+4. Run the project's docs generate and check commands.
 
 ## Frontmatter
 
