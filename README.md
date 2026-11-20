@@ -2,6 +2,9 @@
 
 Shared agent conventions, versioned independently of the jfdevelops CLI. It contains naming, coding, Git, and documentation conventions. Each skill uses a portable `SKILL.md` with `name` and `description` frontmatter; its body uses ordinary project tools instead of agent-specific APIs.
 
+Read the [documentation](docs/README.md) for installation, a quick start, skill
+selection, updates, troubleshooting, and the package discovery contract.
+
 ## Bundled skills
 
 | Skill | Applies before |
