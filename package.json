@@ -23,7 +23,9 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "test": "node --test",
-    "check": "pnpm validate && pnpm test && pnpm skills:check && node scripts/check-package.mjs && pnpm installer:check",
+    "check": "pnpm validate && pnpm test && pnpm skills:check && node scripts/check-package.mjs && pnpm installer:check && pnpm docs:generate && pnpm docs:check",
+    "docs:generate": "jfdevelops-docs generate --skip-reference --name Skills",
+    "docs:check": "jfdevelops-docs check --name Skills",
     "installer:check": "node scripts/check-installer.mjs",
     "prepack": "pnpm validate",
     "skills:sync": "node scripts/sync-agent-skills.mjs",
@@ -58,6 +60,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
+    "@jfdevelops/docs": "0.2.0",
     "skills": "1.7.4"
   }
 }
