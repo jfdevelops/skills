@@ -1,5 +1,12 @@
 # @jfdevelops/skills
 
+## 0.2.1
+
+### Patch Changes
+
+- 3352879: Tell `jf-docs` to write each install command once per package manager, in `npm`, `pnpm`, `yarn`, and `bun` fences.
+- 926bd55: Tell `jf-docs` that only the current major's API reference is generated, and how to keep the outgoing major's reference when a new major ships.
+
 ## 0.2.0
 
 ### Minor Changes
