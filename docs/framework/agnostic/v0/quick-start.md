@@ -22,7 +22,7 @@ assumes all four skills are installed in `.agents/skills/`.
 
 Merge this section into your project's `AGENTS.md` or equivalent instruction file:
 
-```markdown
+```text
 ## Required conventions
 
 Read the applicable skill before starting work:
