@@ -1,6 +1,6 @@
 # @jfdevelops/skills
 
-Shared agent conventions, versioned independently of the jfdevelops CLI. This initial release contains naming, coding, and unified Git conventions. Each skill uses a portable `SKILL.md` with `name` and `description` frontmatter; its body uses ordinary project tools instead of agent-specific APIs.
+Shared agent conventions, versioned independently of the jfdevelops CLI. It contains naming, coding, Git, and documentation conventions. Each skill uses a portable `SKILL.md` with `name` and `description` frontmatter; its body uses ordinary project tools instead of agent-specific APIs.
 
 ## Bundled skills
 
@@ -9,6 +9,7 @@ Shared agent conventions, versioned independently of the jfdevelops CLI. This in
 | [jf-naming-conventions](skills/jf-naming-conventions/SKILL.md) | Naming files, directories, symbols, packages, or APIs |
 | [jf-coding-conventions](skills/jf-coding-conventions/SKILL.md) | Implementing or reviewing JavaScript, TypeScript, or React |
 | [jf-git](skills/jf-git/SKILL.md) | Any Git decision; check repository conventions first, then read the branch, commit, or PR reference |
+| [jf-docs](skills/jf-docs/SKILL.md) | Writing, editing, moving, or reviewing user-facing library docs |
 
 These skills choose no optional integrations. Portless, Convex, TanStack, and jfdevelops library guidance belongs to separately selected addons or package-owned skills.
 
@@ -23,7 +24,7 @@ npx skills add jfdevelops/skills
 Install everything for specific agents without prompts:
 
 ```sh
-npx skills add jfdevelops/skills --skill jf-naming-conventions jf-coding-conventions jf-git --agent claude-code cursor github-copilot codex --yes
+npx skills add jfdevelops/skills --skill jf-naming-conventions jf-coding-conventions jf-git jf-docs --agent claude-code cursor github-copilot codex --yes
 ```
 
 Skills are copied into `.agents/skills/`, which Cursor, GitHub Copilot, Codex, and other agents read directly. Claude Code gets links in `.claude/skills/`. Add `--copy` where symlinks are unavailable, or `--global` to install for every project. The CLI records each skill's source and content hash in `skills-lock.json`; commit it with the installed skills.
