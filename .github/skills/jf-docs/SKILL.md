@@ -111,7 +111,30 @@ docs on another project's docs or describe them as a copy of one.
   `bash`.
 - Write examples the way a reader would. Import from the public package name, not
   internal paths, and use realistic domain names.
-- Use the project's package manager in install commands.
+- Write each install command once per package manager, in consecutive fences
+  labeled `npm`, `pnpm`, `yarn` and `bun`, so a docs site can show them as tabs.
+  Use `npm i`, `pnpm add`, `yarn add` and `bun add`, and give a development
+  dependency `-D` in all four. Keep install commands out of `sh` and `bash` fences.
+
+  ````markdown
+  ```npm
+  npm i @acme/widgets
+  ```
+
+  ```pnpm
+  pnpm add @acme/widgets
+  ```
+
+  ```yarn
+  yarn add @acme/widgets
+  ```
+
+  ```bun
+  bun add @acme/widgets
+  ```
+  ````
+
+- Pin versions the same way in all four fences.
   - **Current major:** install unpinned, or pin a release of that major.
   - **Earlier majors:** pin every package to an exact version, with the main
     package at that major's last release, so copying an old guide never installs
