@@ -1,5 +1,11 @@
 # @jfdevelops/skills
 
+## 0.2.0
+
+### Minor Changes
+
+- c4e14c5: Add the `jf-docs` skill for writing, editing, moving, and reviewing user-facing library documentation.
+
 ## 0.1.1
 
 ### Patch Changes
