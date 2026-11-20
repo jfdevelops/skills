@@ -51,9 +51,9 @@
         "version": "0.2.0",
         "path": "./skills/jf-docs"
       },
-      "sha256": "2901d7f8b3935f9f5eb9c0642194134eb3a2c1de5fb87c5743475efb9ee7d391",
+      "sha256": "65af8de9afe815b687096c0d09721627fed8dd2b6d5df70aee2d59e277a36fa0",
       "files": {
-        "SKILL.md": "95cacea4bcee968654002a01e1a28cc9dc2e39aed69fa5992c24eada8de1e5fb"
+        "SKILL.md": "6fed192d03b0840a144017e1f65075b76822b8efc8d0324c807035003ccc4157"
       }
     }
   ]
