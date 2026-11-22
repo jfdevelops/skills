@@ -11,10 +11,19 @@ This is the repository index for the framework-independent documentation of
 - [Troubleshooting](framework/agnostic/v0/guides/troubleshooting.md)
 - [Package discovery](framework/agnostic/v0/package-discovery.md)
 
-These pages describe the instruction package and its discovery metadata. There is
-no JavaScript runtime API or generated API reference. The repository currently has
-no docs generation, formatting, or lint command. Run `pnpm check` for its configured
-validation, tests, generated skill copies, package contents, and installer checks.
+Public pages live under `docs/framework/<framework>/v<major>/` from the repository root.
+Run the docs commands from this repository:
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md) before changing shared conventions or
+```sh
+pnpm docs:generate
+pnpm docs:check
+```
+
+The generator derives `docs/docs.json` and per-directory `meta.json` navigation from
+page frontmatter. Generated files stay ignored; the website runs these commands
+after checking out its pinned repository commit.
+
+Generation skips the API reference. This package contains agent instructions and metadata rather than a JavaScript runtime API.
+
+See `CONTRIBUTING.md` in the repository root before changing shared conventions or
 repository tooling.
