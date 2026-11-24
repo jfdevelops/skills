@@ -19,7 +19,7 @@ instructions; it does not add a runtime dependency to your application.
 ## Select skills and agents explicitly
 
 ```bash
-npx skills add jfdevelops/skills --skill jf-naming-conventions jf-coding-conventions jf-git jf-docs --agent claude-code cursor github-copilot codex --yes
+npx skills add jfdevelops/skills --skill jf-naming-conventions jf-coding-conventions jf-git jf-docs jf-docs-standards jf-docs-analyze jf-docs-plan jf-docs-write jf-docs-review --agent claude-code cursor github-copilot codex --yes
 ```
 
 Adjust the skill and agent lists for your project. Use `--copy` where symlinks are

@@ -12,7 +12,12 @@ selection, updates, troubleshooting, and the package discovery contract.
 | [jf-naming-conventions](skills/jf-naming-conventions/SKILL.md) | Naming files, directories, symbols, packages, or APIs |
 | [jf-coding-conventions](skills/jf-coding-conventions/SKILL.md) | Implementing or reviewing JavaScript, TypeScript, or React |
 | [jf-git](skills/jf-git/SKILL.md) | Any Git decision; check repository conventions first, then read the branch, commit, or PR reference |
-| [jf-docs](skills/jf-docs/SKILL.md) | Writing, editing, moving, or reviewing user-facing library docs |
+| [jf-docs](skills/jf-docs/SKILL.md) | Any user-facing library docs work; it chooses the workflow and loads the other docs skills |
+| [jf-docs-standards](skills/jf-docs-standards/SKILL.md) | Any docs change; layout, versioning, formatting, links, and checks |
+| [jf-docs-analyze](skills/jf-docs-analyze/SKILL.md) | Analyzing a library's public API, mental model, and type behavior before documenting it |
+| [jf-docs-plan](skills/jf-docs-plan/SKILL.md) | Planning pages by kind, learning path, and API coverage |
+| [jf-docs-write](skills/jf-docs-write/SKILL.md) | Writing tutorials, how-to guides, explanations, and reference pages |
+| [jf-docs-review](skills/jf-docs-review/SKILL.md) | Reviewing docs for technical correctness, quality, and standards |
 
 These skills choose no optional integrations. Portless, Convex, TanStack, and jfdevelops library guidance belongs to separately selected addons or package-owned skills.
 
@@ -27,7 +32,7 @@ npx skills add jfdevelops/skills
 Install everything for specific agents without prompts:
 
 ```sh
-npx skills add jfdevelops/skills --skill jf-naming-conventions jf-coding-conventions jf-git jf-docs --agent claude-code cursor github-copilot codex --yes
+npx skills add jfdevelops/skills --skill jf-naming-conventions jf-coding-conventions jf-git jf-docs jf-docs-standards jf-docs-analyze jf-docs-plan jf-docs-write jf-docs-review --agent claude-code cursor github-copilot codex --yes
 ```
 
 Skills are copied into `.agents/skills/`, which Cursor, GitHub Copilot, Codex, and other agents read directly. Claude Code gets links in `.claude/skills/`. Add `--copy` where symlinks are unavailable, or `--global` to install for every project. The CLI records each skill's source and content hash in `skills-lock.json`; commit it with the installed skills.
@@ -81,6 +86,10 @@ Canonical skill content lives in `skills/`. Agent discovery copies in `.agents/s
 ## Release status
 
 Releases are managed with [Changesets](.changeset/README.md). CI validates metadata, tests invalid declarations, checks generated copies, inspects npm package contents, and requires a changeset on every pull request. Merging to `main` opens a version pull request for pending changesets; merging that pull request publishes the new version to npm with provenance. Consumers should pin a released version; updates should be explicit.
+
+## Documentation skills
+
+`skills/jf-docs/` is the entry point for documentation work. It chooses the smallest workflow for the task and loads the other docs skills for each stage: `jf-docs-standards` for the shared rules, then `jf-docs-analyze`, `jf-docs-plan`, `jf-docs-write`, and `jf-docs-review`. Install all six together. For larger work, the stages share analysis and plans through a `.docs-workspace/` directory outside the published docs, so later sessions re-analyze only what changed. The skills name no model or agent. The package also ships Claude Code subagents in `agents/claude/` that run analysis and planning on Opus, writing on Sonnet, and review on Codex; see [Run docs stages on chosen models](docs/framework/agnostic/v0/guides/docs-agents.md).
 
 ## Unified Git skill
 

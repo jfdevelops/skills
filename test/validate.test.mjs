@@ -16,6 +16,11 @@ test('the actual package registers every required convention skill', async () =>
   assert.deepEqual(entries.map((entry) => entry.name).sort(), [
     'jf-coding-conventions',
     'jf-docs',
+    'jf-docs-analyze',
+    'jf-docs-plan',
+    'jf-docs-review',
+    'jf-docs-standards',
+    'jf-docs-write',
     'jf-git',
     'jf-naming-conventions',
   ]);

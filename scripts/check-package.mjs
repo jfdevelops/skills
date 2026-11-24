@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execSync } from 'node:child_process';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, readdir, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -30,6 +30,11 @@ try {
   }
 
   assert(paths.has('schemas/package-skills.schema.json'));
+
+  for (const name of (await readdir(join(root, 'agents/claude'))).filter((file) => file.endsWith('.md'))) {
+    assert(paths.has(`agents/claude/${name}`), `Published package omits agents/claude/${name}`);
+  }
+
   assert([...paths].every((path) => !path.startsWith('.agents/') && !path.startsWith('test/')));
   console.log(`Package contents verified: ${pack.files.length} files.`);
 } finally {

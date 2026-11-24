@@ -1,186 +1,232 @@
 ---
 name: jf-docs
-description: Write, edit, move, or review user-facing library documentation in jfdevelops projects, including guides, installation and quick-start pages, migration guides, versioned docs, docs for a new major, frontmatter, and links. Read before any docs change, even when the request only says to document a feature or update a guide.
+description: Orchestrate the analysis, planning, writing, editing, migration, and review of user-facing library documentation in jfdevelops projects, including guides, installation and quick-start pages, versioned docs, and docs for a new major. Read before any docs change, even when the request only says to document a feature, update a guide, or fix a link.
 ---
 
-# Documentation
+# Documentation orchestrator
 
-These defaults cover user-facing library docs written as Markdown pages for a docs
+Coordinate documentation work through the specialized documentation skills. Your job
+is to establish scope, choose the smallest workflow that does the task, run its
+stages in order, and confirm the documentation is complete.
+
+These skills cover user-facing library docs written as Markdown pages for a docs
 site. They do not cover READMEs, code comments, changelogs, or maintainer notes,
 except where those link into the docs.
 
-## Read the current project first
+Do not replace a specialized skill with your own abbreviated version of it. The
+goal of every stage is developer understanding. Correctness and formatting are
+requirements, not the goal.
 
-Before editing, read the project's own docs rules. Look for a docs README, a
-content contract or style guide (often under `docs/maintainers/`), the docs check
-and generate scripts in `package.json`, and two or three existing pages near the
-one you are changing. A project's rules take precedence over these defaults, and
-current user instructions take precedence over both. Use these defaults only where
-the project is silent.
+## Load the related skills
 
-Identify these before writing:
+| Skill | Responsibility |
+| --- | --- |
+| [jf-docs-standards](../jf-docs-standards/SKILL.md) | Layout, versioning, frontmatter, formatting, links, and checks |
+| [jf-docs-analyze](../jf-docs-analyze/SKILL.md) | Understand the library and its mental model |
+| [jf-docs-plan](../jf-docs-plan/SKILL.md) | Design the learning path and page plan |
+| [jf-docs-write](../jf-docs-write/SKILL.md) | Write the content for each kind of page |
+| [jf-docs-review](../jf-docs-review/SKILL.md) | Independently validate accuracy, quality, and standards |
 
-- where pages for each framework and version live
-- which files are generated (navigation, manifests, the API reference), because
-  generated files are never edited by hand
-- the allowed frontmatter keys and Markdown features
-- the commands that generate and check the docs
+The skills are installed next to this one. If a link does not resolve, look in the
+agent's other configured skill directories.
 
-## Layout
+- Read `jf-docs-standards` before any documentation work.
+- Read each specialized skill before running its stage. Referencing a skill does
+  not load it; open and read its `SKILL.md`.
+- If a skill is missing, say so, then run that stage from the instructions you
+  have. Recommend installing the full set of `jf-docs` skills.
 
-The default layout is versioned by framework and major:
+## Instruction precedence
+
+1. System and agent instructions.
+2. Current user instructions.
+3. The project's own documentation rules.
+4. `jf-docs-standards`.
+5. The defaults in the specialized skills.
+
+## Determine scope
+
+Before choosing a workflow, identify:
+
+- the library and the packages affected
+- the framework
+- the target version or release; never assume the latest major
+- the existing documentation structure
+- the requested change and the public APIs it touches
+- related pages that may need to change with it
+- the verification tooling the project has
+
+## Select a workflow
+
+Choose the smallest workflow that does the task.
+
+### Full documentation
+
+For an undocumented library, a comprehensive rewrite, or a large documentation
+initiative.
+
+1. Analyze.
+2. Plan.
+3. Write.
+4. Review.
+5. Resolve confirmed findings.
+6. Verify.
+
+### Feature documentation
+
+For a new feature or a substantially changed API.
+
+1. Analyze the affected APIs and how they relate to the rest of the library.
+2. Identify the affected pages.
+3. Plan new pages or changes where needed.
+4. Write.
+5. Review the affected documentation.
+6. Verify.
+
+### Incremental update
+
+For targeted changes to existing documentation.
+
+1. Inspect the affected pages and source.
+2. Identify related pages and examples that also need to change.
+3. Write the targeted changes.
+4. Review and verify.
+
+Do not audit the whole repository for a small change.
+
+### Documentation review
+
+When the user asks for an audit.
+
+1. Establish scope.
+2. Analyze the relevant source.
+3. Run `jf-docs-review`.
+4. Report findings.
+
+Do not modify files unless asked to.
+
+### New major release
+
+1. Analyze the outgoing and incoming majors.
+2. Follow the new-major procedure in `jf-docs-standards`.
+3. Identify breaking changes.
+4. Plan the migration guide.
+5. Update affected guides and examples.
+6. Review version-specific accuracy.
+7. Generate and verify the docs.
+
+### Editorial change
+
+For wording, formatting, frontmatter, navigation, or link-only changes.
+
+1. Read the project's rules and `jf-docs-standards`.
+2. Make the targeted change.
+3. Run the docs checks.
+
+Do not analyze or plan.
+
+## Coordinate stages
+
+Each stage must leave enough for the next stage to work without rediscovering the
+same context. Pass the scope, the target version, and the earlier stages' output
+to each stage, especially when a stage runs in a separate agent or context.
+
+Do not pass an assumption from one stage to the next as a verified fact. Label
+inferences as inferences.
+
+## Keep a documentation workspace
+
+For substantial work (full documentation, feature documentation, or a new major),
+keep intermediate files in a documentation workspace so later sessions and other
+agents can reuse them instead of re-analyzing the library.
+
+Use the project's configured workspace if it has one. Otherwise use
+`.docs-workspace/` at the repository root. Keep it outside the published docs, and
+add it to `.gitignore` unless the project chooses to commit it.
 
 ```text
-docs/
-  README.md                  repository index, not published
-  framework/<framework>/
-    v<major>/
-      overview.md            top-level pages: overview, installation,
-      installation.md        quick-start, typescript, devtools
-      guides/*.md            how-to guides, troubleshooting, migration
-      plugins/*.md           companion packages
-      reference/             current major: generated API reference, never committed
-                             earlier majors: hand-written reference/api.md
-      assets/*               images only
-  maintainers/               contributor notes, never public
+.docs-workspace/
+  state.yaml            source revision, target major, stage and package status
+  analysis/<package>.md analysis per package
+  api-inventory.json    public exports and where each is documented
+  concepts.md           the mental model and its terms
+  plan.md               page plan and coverage
+  progress.md           pages written, reviewed, and outstanding
+  reviews/latest.md     the most recent review report
 ```
 
-- Write a change in the version directory whose release it describes. A feature
-  added in 4.x goes in `v4/`. Change an earlier major only to fix something that
-  was wrong at that release.
-- Keep pages out of the docs root. When a page moves, update every link to it
-  rather than leaving a stub.
-- Generate navigation from the pages. Do not keep hand-written ordering files in
-  sync with frontmatter.
-- Never edit the current major's generated reference. Earlier majors keep a
-  hand-written `reference/api.md` that the generator never touches; correct it
-  directly, checked against that major's last release tag.
-- Link to the reference instead of copying signatures into a guide:
-  `reference/index.md` or a page under it in the current major, and
-  `reference/api.md` in earlier majors.
-- Never link a public page to maintainer notes.
-
-### When a new major ships
-
-The generator writes a reference only for the current major, and that reference is
-never committed. Without these steps the outgoing major is left with none. Do them
-in one change, before or with the version bump:
-
-1. Write `reference/api.md` for the outgoing major by hand. Take the exports from the
-   package entry points at that major's last release tag, and name the version and
-   tag in the intro. Don't copy the generated output: it spans many pages and is
-   marked as generated, so the docs check rejects it outside the current major.
-   Delete the generated pages from that `reference/` folder, so only `api.md` is left.
-2. In the outgoing major's pages, change links from `reference/index.md` and its
-   subpages to `reference/api.md`, with anchors that exist there.
-3. Add the `v<major>/` directory for the new major. If the project ignores the
-   generated reference by path, move that ignore entry to the new major.
-4. Run the project's docs generate and check commands.
-
-## Frontmatter
+`state.yaml` records what the analysis was based on:
 
 ```yaml
----
-title: Lazy loading
-description: Code-split whole pages and single states, with typed errors and retry.
-order: 60
----
+schemaVersion: 1
+source:
+  revision: 'abc1234'
+  major: 4
+stages:
+  analyze: completed
+  plan: completed
+  write: in-progress
+  review: pending
+packages:
+  core:
+    analysis: analysis/core.md
+    status: current
+  plugins:
+    analysis: analysis/plugins.md
+    status: stale
 ```
 
-- Use only the keys the project allows. By default these are `title`,
-  `description` and `order`.
-- `order` sets the sidebar position. Use steps of 10 so pages can be inserted
-  later, and keep it unique within a directory. Check sibling pages before choosing.
-- The title is plain text and does not name the page's own version. Migration pages
-  are the exception, for example "Migrating from v3 to v4".
-- The description is one sentence saying what the reader can do with the page.
+For small changes, keep findings in the working context and create no files.
 
-## Writing
+### Reuse analysis
 
-Write plainly, so a reader can follow the page on a first read. Do not model the
-docs on another project's docs or describe them as a copy of one.
+Before analyzing, read `state.yaml` if it exists. Compare the recorded revision
+with the current one, for example with `git diff --stat <revision>..HEAD`, and
+mark the packages whose source changed as `stale`. Re-analyze only stale packages
+and the concepts they touch, then record the new revision. Reuse current analysis
+as-is. Discard it entirely if the target major changed.
 
-- **No `#` heading.** The site renders the frontmatter title as the `h1`. Sections
-  start at `##`, and heading levels never skip.
-- **Open with one or two sentences** that say what the feature does and when to use
-  it. A guide then lists "In this guide you will:" with three to five verb-first
-  bullets.
-- **One idea per section,** with a task-style heading such as "Load a page lazily"
-  or "Choose a package". Show the code, then explain what matters about it.
-- **Prefer a table** to a paragraph that lists options, packages or terms.
-- **Use callouts sparingly.** A block quote opening with `**Note:**`, `**Tip:**` or
-  `**Warning:**` is a callout. Use one only for a rule that is easy to miss, such
-  as a precedence order or a required call order.
-- **End with "Next steps",** a short list of links to the pages a reader most
-  likely needs next.
-- **Don't name the page's own version** in the title, description or intro. The URL
-  and version selector already show it. Name another version only for a real
-  cross-version fact: a migration step, an "added in 4.1.0" note, or a
-  compatibility table.
+## Review independently
 
-## Accuracy
+Review in a context that did not write the pages. When the environment provides a
+dedicated reviewer, such as a separate agent or a different model, hand the review
+to it with:
 
-- Document only what the source supports at that version. Check exports, tests
-  and the changelog before describing an API.
-- For an earlier major, read the source at that major's last release tag, for
-  example `git show <package>@<version>:<path>`, not the default branch.
-- Never invent dates, versions or release facts. Take them from the changelog, the
-  package manifest or git tags.
+- the documentation scope
+- the target version
+- the relevant source
+- the changed pages
+- `jf-docs-standards` and `jf-docs-review`
 
-## Code
+The reviewer must verify technical claims itself. If no independent reviewer is
+available, run a separate review pass that rereads the source instead of trusting
+the writer's notes.
 
-- Give every fence a language the project allows, such as `ts`, `tsx`, `json` or
-  `bash`.
-- Write examples the way a reader would. Import from the public package name, not
-  internal paths, and use realistic domain names.
-- Write each install command once per package manager, in consecutive fences
-  labeled `npm`, `pnpm`, `yarn` and `bun`, so a docs site can show them as tabs.
-  Use `npm i`, `pnpm add`, `yarn add` and `bun add`, and give a development
-  dependency `-D` in all four. Keep install commands out of `sh` and `bash` fences.
+## Completion criteria
 
-  ````markdown
-  ```npm
-  npm i @acme/widgets
-  ```
+Documentation is complete only when:
 
-  ```pnpm
-  pnpm add @acme/widgets
-  ```
+- every technical claim is supported by source at the target version
+- the requested functionality is explained well enough to use
+- public APIs are represented accurately
+- examples are valid and verified as far as the tooling allows
+- related pages are updated
+- version rules in `jf-docs-standards` are met
+- the docs generate and check commands pass
+- confirmed review findings are resolved
 
-  ```yarn
-  yarn add @acme/widgets
-  ```
+Never change library source or weaken a check to make documentation pass. Report
+any verification you could not complete.
 
-  ```bun
-  bun add @acme/widgets
-  ```
-  ````
+## Final report
 
-- Pin versions the same way in all four fences.
-  - **Current major:** install unpinned, or pin a release of that major.
-  - **Earlier majors:** pin every package to an exact version, with the main
-    package at that major's last release, so copying an old guide never installs
-    the latest major.
-- If the project type-checks examples from fixture files, keep the page's code and
-  its fixture identical.
+Summarize:
 
-## Links
+- the scope
+- pages created or updated
+- important documentation decisions
+- verification run and its results
+- remaining issues or limitations
 
-- Link between pages with relative `.md` paths, with an optional `#anchor`. Anchors
-  follow the GitHub heading slug rules.
-- Cross-version links are relative too, for example `../../v3/migration.md`.
-- External links use `https://`. Point to repository source with inline code or an
-  `https://` link pinned to a tag, not a link into the default branch.
-- Never use absolute `/` paths.
-- When a page moves, update package READMEs and other repository files that link
-  to it.
-
-## Verify and deliver
-
-- Run the project's docs generate and check commands, plus its format and lint
-  commands. All must pass. Fix the page rather than weakening the checker.
-- If formatting touches a file you did not edit and the only change is line
-  endings, restore that file.
-- Follow `jf-git` for branches, commits and pull requests. A docs-only change
-  usually uses the `docs` type and needs no release entry unless the project says
-  otherwise.
+Follow `jf-git` for branches, commits, and pull requests. Do not commit or open a
+pull request unless the user or the project's workflow authorizes it.

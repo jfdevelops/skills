@@ -37,6 +37,17 @@ Keep project-specific rules in your project instructions so they remain visible
 when shared instructions are replaced. Preserve any existing local edits before
 running an update.
 
+## Add the documentation skills
+
+`jf-docs` now coordinates five companion skills: `jf-docs-standards`,
+`jf-docs-analyze`, `jf-docs-plan`, `jf-docs-write`, and `jf-docs-review`. Its
+former rules moved to `jf-docs-standards`. Install all five alongside `jf-docs`;
+project instruction links to `jf-docs/SKILL.md` stay the same.
+
+```bash
+npx skills add jfdevelops/skills --skill jf-docs-standards jf-docs-analyze jf-docs-plan jf-docs-write jf-docs-review
+```
+
 ## Migrate the Git skills
 
 The unified `jf-git` skill replaces the former `jf-git-workflow` and

@@ -16,7 +16,7 @@ In this guide you will:
 ## Install the conventions
 
 Follow [Installation](installation.md) from the project root. The example below
-assumes all four skills are installed in `.agents/skills/`.
+assumes every skill is installed in `.agents/skills/`.
 
 ## Add project instructions
 
@@ -43,7 +43,8 @@ rules so agents can apply them before shared defaults.
 ## Check discovery
 
 Confirm each linked `SKILL.md` exists and that `jf-git/references/` contains its
-supporting Markdown files. Ask your agent to identify the applicable skill and
+supporting Markdown files. `jf-docs` loads the other `jf-docs-*` skills from the
+same directory, so confirm those are installed next to it. Ask your agent to identify the applicable skill and
 read it before a matching task, such as naming a helper or editing a guide.
 
 Explicit instruction links help make the requirement clear, but native skill

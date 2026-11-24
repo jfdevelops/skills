@@ -10,6 +10,7 @@
   },
   "files": [
     "skills",
+    "agents",
     "schemas"
   ],
   "exports": {
@@ -55,6 +56,26 @@
       {
         "name": "jf-docs",
         "path": "./skills/jf-docs"
+      },
+      {
+        "name": "jf-docs-standards",
+        "path": "./skills/jf-docs-standards"
+      },
+      {
+        "name": "jf-docs-analyze",
+        "path": "./skills/jf-docs-analyze"
+      },
+      {
+        "name": "jf-docs-plan",
+        "path": "./skills/jf-docs-plan"
+      },
+      {
+        "name": "jf-docs-write",
+        "path": "./skills/jf-docs-write"
+      },
+      {
+        "name": "jf-docs-review",
+        "path": "./skills/jf-docs-review"
       }
     ]
   },
