@@ -15,10 +15,16 @@ of conventions while retaining that project's own rules.
 | `jf-naming-conventions` | Naming or renaming files, symbols, packages, or APIs |
 | `jf-coding-conventions` | Implementing or reviewing JavaScript, TypeScript, or React |
 | `jf-git` | Making Git decisions, including branches, commits, and pull requests |
-| `jf-docs` | Writing, editing, moving, or reviewing user-facing library docs |
+| `jf-docs` | Any user-facing library docs work; it loads the other docs skills |
+| `jf-docs-standards` | Any docs change, for layout, versioning, formatting, and links |
+| `jf-docs-analyze` | Analyzing a library before documenting it |
+| `jf-docs-plan` | Planning pages and their order |
+| `jf-docs-write` | Writing tutorials, guides, explanations, and reference pages |
+| `jf-docs-review` | Reviewing docs for accuracy, quality, and standards |
 
 Each skill has a `SKILL.md` containing its name, description, and instructions.
 The Git skill also includes references for branches, commits, and pull requests.
+The six docs skills work together, with `jf-docs` as their entry point.
 
 Read [Choose skills](guides/choose-skills.md) for each skill's purpose, the
 instructions it gives an agent, and the reasons for using it.

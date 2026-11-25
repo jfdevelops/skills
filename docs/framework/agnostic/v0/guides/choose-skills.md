@@ -21,7 +21,12 @@ In this guide you will:
 | `jf-naming-conventions` | Existing project vocabulary, filename conventions, symbols, package names, and compatibility when renaming |
 | `jf-coding-conventions` | Functions, spacing, types, file organization, React composition, and verification |
 | `jf-git` | Repository-first Git guidance with references for branches, commits, and pull requests |
-| `jf-docs` | Versioned docs layout, frontmatter, examples, links, migration, and verification |
+| `jf-docs` | Entry point for docs work: scope, workflow choice, stage coordination, and completion |
+| `jf-docs-standards` | Versioned docs layout, new-major rollover, frontmatter, formatting, links, and checks |
+| `jf-docs-analyze` | Public API, mental model, type inference, and runtime behavior, from source |
+| `jf-docs-plan` | Page kinds, learning path, and API coverage |
+| `jf-docs-write` | Content for tutorials, how-to guides, explanations, and reference pages |
+| `jf-docs-review` | Technical correctness, documentation quality, and standards compliance |
 
 A task can require several skills. Adding a named public function and documenting
 it calls for naming, coding, and docs guidance. Creating a commit also requires Git
@@ -124,34 +129,46 @@ commit, push, open a pull request, or merge.
 
 ### Purpose
 
-Help readers complete library tasks using accurate, navigable documentation for
-the framework and release they use. Apply it before writing, editing, moving, or
-reviewing user-facing library documentation pages.
+Help developers understand and use a library through accurate documentation for
+the framework and release they use. Apply `jf-docs` before any user-facing library
+documentation work. It is the entry point for six skills that work together, so
+install all six.
 
 ### What it does
 
-The skill first checks the project's docs contract, existing pages, generation
-scripts, and validation commands. Its defaults cover versioned framework folders,
-frontmatter, task-oriented sections, examples, relative links, and next steps.
+`jf-docs` establishes the scope, including the target version, and picks the
+smallest workflow for the task: full documentation, a feature, an incremental
+update, a review, a new major, or an editorial change. It then runs only the
+stages that workflow needs, reading each stage's skill first:
 
-It requires claims to match the relevant source, exports, tests, and changelog.
-Examples use public package imports, and installation commands have consistent
-package-manager variants. It distinguishes generated API reference from authored
-guides and explains how to preserve an outgoing major's reference when a new
-major ships. It also requires applicable documentation and formatting checks.
+| Stage | Skill | What the agent does |
+| --- | --- | --- |
+| Standards | `jf-docs-standards` | Applies the project's rules, then the shared layout, versioning, formatting, and link rules |
+| Analyze | `jf-docs-analyze` | Learns the public API, the library's mental model, its type inference, and its runtime behavior from source |
+| Plan | `jf-docs-plan` | Gives each page one kind (tutorial, how-to guide, explanation, or reference), orders the learning path, and maps every export to a page |
+| Write | `jf-docs-write` | Writes each page for its kind, answering what a developer needs to know, with type-safe examples |
+| Review | `jf-docs-review` | Checks technical correctness, documentation quality, and standards, against source |
+
+For larger work, the stages keep their analysis and plans in a `.docs-workspace/`
+directory outside the published docs. A later session compares the recorded source
+revision with the current one and re-analyzes only what changed. Review runs
+separately from writing, with a different agent or model when your environment
+provides one.
 
 ### Why use it
 
-Readers need instructions that match their installed release and lead to a
-working result. Versioned pages and release-appropriate examples reduce the risk
-of following instructions for an incompatible API. Clear tasks and maintained
-links help readers move from setup to practical use.
+Docs that are correctly formatted can still leave readers unable to use a feature.
+Analyzing the library first, planning a learning path, and writing each kind of
+page differently aim the docs at understanding, while the standards keep pages
+correct for their release. An independent review catches assumptions the writer
+didn't question.
 
-For example, moving a guide requires updating links to its new location. A guide
-for an older major must use that release's source and pinned dependencies rather
-than assume the current API still applies. This skill focuses on documentation
-pages; it does not prescribe README, changelog, or code-comment style except where
-those link into the docs.
+For example, documenting a new step option starts with how steps and schemas
+relate and what TypeScript infers, updates the affected guide and reference, and
+ends with a review against source. A guide for an older major uses that release's
+source and pinned dependencies. These skills cover documentation pages; they do
+not prescribe README, changelog, or code-comment style except where those link
+into the docs.
 
 ## Keep exceptions with the project
 
@@ -164,6 +181,10 @@ Choose separate skills for integrations your project actually uses.
 Read `jf-git/SKILL.md` first. It points to `references/branches.md` for branch work,
 `references/commits.md` for staging and commits, and `references/pull-requests.md`
 for pull request work. Preserve this directory when copying the skill.
+
+`jf-docs-standards`, `jf-docs-write`, and `jf-docs-review` also keep references
+under `references/`, which an agent reads only when the task needs them. Copy those
+directories too.
 
 ## Next steps
 

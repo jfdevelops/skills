@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validatePackage } from './validate.mjs';
@@ -29,6 +29,11 @@ for (const entry of entries) {
     sha256,
     files: hashes,
   });
+}
+
+// Claude Code subagents that run the jf-docs stages on chosen models.
+for (const name of (await readdir(resolve(source, 'agents/claude'))).filter((file) => file.endsWith('.md')).sort()) {
+  files.set(`.claude/agents/${name}`, await readFile(resolve(source, 'agents/claude', name)));
 }
 
 files.set('jfdevelops.json', `${JSON.stringify({ schemaVersion: 1, skills }, null, 2)}\n`);

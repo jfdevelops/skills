@@ -25,8 +25,10 @@ workflow to place the instruction files where your agent reads them.
 
 ## Repair missing references
 
-Copy the whole skill directory, including supporting resources. `jf-git` needs its
-`references/` directory in addition to `SKILL.md`. Reinstall the selected skill if
+Copy the whole skill directory, including supporting resources. `jf-git`,
+`jf-docs-standards`, `jf-docs-write`, and `jf-docs-review` need their
+`references/` directories in addition to `SKILL.md`. `jf-docs` also needs the
+other five `jf-docs-*` skills installed next to it. Reinstall the selected skill if
 the installed copy is incomplete, preserving local edits first.
 
 If symlinks are unavailable, use the install command's `--copy` option.
