@@ -15,16 +15,18 @@ From the task, work out the scope (the pages, or a diff such as `main...HEAD`) a
 
 ```bash
 out="$(mktemp)"
+prompt="$(cat <<'PROMPT'
+Review documentation in audit mode. Find the docs skills in .agents/skills/ (or search the repository for jf-docs-review/SKILL.md). Read jf-docs-standards/SKILL.md, then read jf-docs-review/SKILL.md and its references and follow them exactly. Scope: <scope>. Target: <package, framework, version>. Do not edit any file. Report in the format jf-docs-review describes.
+PROMPT
+)"
 codex exec -m gpt-6.2-astra -c model_reasoning_effort='"high"' -c approval_policy='"never"' \
-  -s read-only --ephemeral --color never -o "$out" "<prompt>" < /dev/null
+  -s read-only --ephemeral --color never -o "$out" "$prompt" < /dev/null
 cat "$out"
 ```
 
+Replace `<scope>` and `<package, framework, version>` in the prompt, and change nothing else in the command. The quoted `'PROMPT'` heredoc keeps the shell from expanding backticks, `$` or quotes in the prompt, so keep it rather than writing the prompt inline in double quotes.
+
 Use a Bash timeout of 600000 ms. Keep `< /dev/null`: without it Codex waits for stdin and hangs. The flags pin the model, the reasoning effort and a read-only sandbox, so the command needs no Codex profile. Don't change them.
-
-Write the prompt as:
-
-> Review documentation in audit mode. Find the docs skills in `.agents/skills/` (or search the repository for `jf-docs-review/SKILL.md`). Read `jf-docs-standards/SKILL.md`, then read `jf-docs-review/SKILL.md` and its references and follow them exactly. Scope: <scope>. Target: <package, framework, version>. Do not edit any file. Report in the format `jf-docs-review` describes.
 
 ## 2. If Codex fails
 
