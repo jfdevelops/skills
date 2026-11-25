@@ -1,6 +1,6 @@
 {
   "name": "@jfdevelops/skills",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Shared, portable agent skills for jfdevelops projects",
   "type": "module",
   "license": "MIT",
