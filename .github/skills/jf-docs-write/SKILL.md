@@ -57,7 +57,8 @@ unless it changes what they write.
   a required call order.
 - Don't call a feature simple, powerful, seamless, or flexible. Show it.
 - Don't repeat an explanation that lives on another page; link to it.
-- Don't model the docs on another project's docs or describe them as a copy of one.
+- Never reference an outside project. Keep every page self-contained, as
+  `jf-docs-standards` describes.
 - Vary structure to fit the content. Pages that all follow one template read as
   generated.
 
