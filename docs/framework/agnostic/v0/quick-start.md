@@ -1,56 +1,53 @@
 ---
 title: Quick start
-description: Require installed conventions for the work an agent performs in your project.
+description: Install a naming skill and verify that your agent reads it for a concrete task.
 order: 30
 ---
 
-Point your project's agent instructions at the installed skills to require them
-before applicable work. Keep your existing project rules when adding these links.
+Install one skill, require it in project instructions, and use it to name a helper. This walkthrough uses Codex and a project-local copy so the instruction path is explicit. You need Node.js 22.20 or newer, an existing project, and an agent that reads its `AGENTS.md`.
 
-In this guide you will:
+## 1. Install the naming skill
 
-- Install the conventions you need.
-- Add task-specific requirements to your agent instructions.
-- Check that the agent can read the installed resources.
+Run this from your project root:
 
-## Install the conventions
-
-Follow [Installation](installation.md) from the project root. The example below
-assumes every skill is installed in `.agents/skills/`.
-
-## Add project instructions
-
-Merge this section into your project's `AGENTS.md` or equivalent instruction file:
-
-```text
-## Required conventions
-
-Read the applicable skill before starting work:
-
-- Naming or renaming: [.agents/skills/jf-naming-conventions/SKILL.md](.agents/skills/jf-naming-conventions/SKILL.md).
-- Implementing or reviewing code: [.agents/skills/jf-coding-conventions/SKILL.md](.agents/skills/jf-coding-conventions/SKILL.md).
-- Git decisions: [.agents/skills/jf-git/SKILL.md](.agents/skills/jf-git/SKILL.md).
-- Library documentation: [.agents/skills/jf-docs/SKILL.md](.agents/skills/jf-docs/SKILL.md).
-
-Read relevant repository instructions first. Preserve existing user changes.
-These skills do not authorize commits, pushes, publishing, or deployments.
+```bash
+npx skills add jfdevelops/skills --skill jf-naming-conventions --agent codex --copy --yes
 ```
 
-Adjust the paths if your installation uses another location, and include only the
-skills you installed. Record project-specific exceptions alongside your project
-rules so agents can apply them before shared defaults.
+The installed skill is `.agents/skills/jf-naming-conventions/SKILL.md`. Confirm the file exists before continuing. The command installs instructions; it does not add a runtime dependency to your application.
 
-## Check discovery
+## 2. Require it for naming work
 
-Confirm each linked `SKILL.md` exists and that `jf-git/references/` contains its
-supporting Markdown files. `jf-docs` loads the other `jf-docs-*` skills from the
-same directory, so confirm those are installed next to it. Ask your agent to identify the applicable skill and
-read it before a matching task, such as naming a helper or editing a guide.
+Add this section to your project's `AGENTS.md`, preserving existing instructions:
 
-Explicit instruction links help make the requirement clear, but native skill
-discovery still depends on your agent's configuration.
+```text
+## Naming conventions
 
-## Next steps
+Before adding or renaming files, symbols, packages, or APIs, read [jf-naming-conventions](.agents/skills/jf-naming-conventions/SKILL.md).
+Follow established project vocabulary and conventions before shared defaults.
+Preserve existing user changes.
+```
 
-- [Understand each skill's scope](guides/choose-skills.md).
-- [Troubleshoot missing instructions](guides/troubleshooting.md).
+The relative link points at the installed file from the project root. The requirement makes the task trigger explicit instead of relying only on native discovery.
+
+## 3. Try a naming task
+
+In an agent session for that project, use this prompt:
+
+```text
+Read the required naming skill and inspect the project's existing vocabulary.
+Propose a name for a helper that discovers skills declared by a package.
+Explain which existing convention supports the name. Do not edit files.
+```
+
+The agent should read the installed skill and relevant project files before proposing a name. In a project using the skill's defaults, `discoverPackageSkills` is an example of an action-and-result name. Your project's established naming can lead to a different result.
+
+## Check the result
+
+You now have an installed skill, a task-specific requirement, and a concrete request that exercises it. Verify that the agent used the actual skill file and project vocabulary. A matching-looking name alone does not establish that the agent read the instructions. If it cannot find the file or ignores the requirement, use [Troubleshooting](guides/troubleshooting.md).
+
+## Expand the setup
+
+[Installation](installation.md) covers other agents, the full convention set, and the six documentation skills. Add instruction links only for installed skills, with requirements matching their scope. Git decisions use `jf-git`; JavaScript, TypeScript, and React implementation or review uses `jf-coding-conventions`; library docs work starts with `jf-docs`.
+
+Project instructions should also preserve existing work and state that the skills do not authorize commits, pushes, publication, or deployment. Keep project exceptions in those instructions. Read [How skills apply](concepts.md) for the relationship between discovery, requirements, and authorization.
