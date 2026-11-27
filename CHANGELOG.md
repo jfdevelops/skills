@@ -1,5 +1,11 @@
 # @jfdevelops/skills
 
+## 0.3.1
+
+### Patch Changes
+
+- 980cf65: Require self-contained docs that never reference an outside project.
+
 ## 0.3.0
 
 ### Minor Changes
