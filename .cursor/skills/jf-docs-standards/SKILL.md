@@ -34,6 +34,21 @@ Identify these before writing:
 | [versioning](references/versioning.md) | Choosing a version directory, writing about another version, pinning installs, or shipping a new major |
 | [formatting](references/formatting.md) | Writing frontmatter, headings, callouts, code, install commands, or links |
 
+## Keep the docs self-contained
+
+Never reference an outside project in the docs. A reader must be able to learn and
+use the library from its own pages alone.
+
+- Don't compare the library to another project, describe it as inspired by or
+  modeled on one, or assume the reader has used one.
+- Don't send the reader to another project's docs, source, or examples to
+  understand a concept, an API, or a step. Explain it on the page.
+- Don't link to outside projects. Links go to this project's own pages or its own
+  repository.
+- Name another package only when the reader installs, imports, or configures it to
+  use this library, such as a peer dependency or the framework an adapter targets.
+  Even then, explain what the reader needs from it on the page.
+
 ## Checks
 
 - Run the project's docs generate and check commands, plus its format and lint

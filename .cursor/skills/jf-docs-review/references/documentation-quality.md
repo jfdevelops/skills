@@ -48,6 +48,8 @@ Flag:
 - the same explanation repeated across pages instead of linked
 - vague claims such as "simple" or "powerful" with nothing to back them up
 - pages that follow a template so closely they read as generated
+- any reference to an outside project, such as a comparison, a link, or a pointer
+  to its docs, as `jf-docs-standards` describes
 
 ## Structure
 

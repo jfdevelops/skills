@@ -69,6 +69,8 @@ Pin versions as [versioning](versioning.md#pin-installs-by-major) describes.
 - Link between pages with relative `.md` paths, with an optional `#anchor`. Anchors
   follow the GitHub heading slug rules.
 - Cross-version links are relative too, for example `../../v3/migration.md`.
-- External links use `https://`. Point to repository source with inline code or an
-  `https://` link pinned to a tag, not a link into the default branch.
+- Don't link to outside projects; see
+  [keep the docs self-contained](../SKILL.md#keep-the-docs-self-contained).
+- Point to this project's repository source with inline code or an `https://` link
+  pinned to a tag, not a link into the default branch.
 - Never use absolute `/` paths.

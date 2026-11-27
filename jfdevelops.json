@@ -64,12 +64,12 @@
         "version": "0.3.0",
         "path": "./skills/jf-docs-standards"
       },
-      "sha256": "a775437cb79aae99cd1990464e7a317023c973847d0178fa852ed2c74b9a9805",
+      "sha256": "0659df3860f9da693a90c16248b2ca9747559550cc68b82b8879ff0d78f6d99a",
       "files": {
-        "references/formatting.md": "e857d0b286681f80922ee2934a96737ac1b3fd6277993611afb9bd095bfd3910",
+        "references/formatting.md": "a64a1f82a18a08d8ed1807e28bc12519ab8f0cddcbc673f0e3a72368a0b26b9b",
         "references/layout.md": "42e8edc3870d07ff609ee2fe0020691caab0b9b70fa9d55c85845d19b29d716f",
         "references/versioning.md": "aa7459c1c6b4673f0a30d847e19c022c1661e9845025092dedb4265106670d76",
-        "SKILL.md": "828ba35207550f887925b82a1fd10e69cbf476ce3f2e7859de002c198977389b"
+        "SKILL.md": "9dc1f2122dc3afc83f8c5fde01621b4fb53d02cac3295848ac608e345446c6c8"
       }
     },
     {
@@ -106,13 +106,13 @@
         "version": "0.3.0",
         "path": "./skills/jf-docs-write"
       },
-      "sha256": "f40936e613eafe60ecaf80e31a1145fbd7cd79cdfdbaa135f459222fc16b5fd9",
+      "sha256": "cffca1ce83d032b5713579702ef80efbbd3946fb64cd10529ecd2ab9d88efa67",
       "files": {
         "references/explanations.md": "431edf297fd446e9dab9d85b1099341a4d9430d67a4a5644603af8360a230d03",
         "references/guides.md": "1c66c3994865cde32560f435d7e6fa16098a186688ccfe6af316d5590db82d59",
         "references/reference.md": "cf748026e52e719bf04acbf606988a225a0bf0fac6757982571532f239b69bc6",
         "references/tutorials.md": "f7633f881806cd4f5bdbf1c5924fe9e1822f09992617c0843d09d98d1adb3d3c",
-        "SKILL.md": "7dbd7c05f72b6cd017a0579daf29c8da09223fbaa0d21843fd0725cc3e4d6717"
+        "SKILL.md": "8b2ca1131bf743f819c2a41345062f3cddd4404860a84ba7a9f1ca033efbcd80"
       }
     },
     {
@@ -123,9 +123,9 @@
         "version": "0.3.0",
         "path": "./skills/jf-docs-review"
       },
-      "sha256": "2703eb82fd64a2a49e508ad933fa44a9a7b9b4df493d41f0814f96d9f08ce1d6",
+      "sha256": "484a50c9ba2dff4c1ced031441ac1c18456f2082d88c46475000f275286b3bb2",
       "files": {
-        "references/documentation-quality.md": "e88a22aaa0462810b55a8f7be948ddc213ad912361f55ea44c2fc8b48b8c2857",
+        "references/documentation-quality.md": "49b7ba5ca835f7aa44738c54ea95344ec4b57ffb581a4251d2ce0c65f199c26f",
         "references/technical-accuracy.md": "f8bbacfc93efb12b2a6e80c5b500bb37ff357e0dfeb506362d3f68456ea50a85",
         "SKILL.md": "00e53257e3db0dd3ac9ea65b67b67f4d1abc5e67d6c52cabe775cb655b3d3eee"
       }
