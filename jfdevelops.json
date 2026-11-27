@@ -6,7 +6,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-naming-conventions"
       },
       "sha256": "2425a72155584c03d30f99b70947c216a7597058621e9cea1691be10a4f8b48d",
@@ -19,7 +19,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-coding-conventions"
       },
       "sha256": "6070c6786420b5b8e0b3ae3c004367980380842401a9c64a5f7ac81d269b7e78",
@@ -32,7 +32,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-git"
       },
       "sha256": "4793bd62062321475488c71f75569d1205ea9e895118514b43ede9a8fa2461f1",
@@ -48,7 +48,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-docs"
       },
       "sha256": "2aa82e7386da9dab9f505f4c62bba072b6466e7add47c829bf5960b9539a02f3",
@@ -61,7 +61,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-docs-standards"
       },
       "sha256": "0659df3860f9da693a90c16248b2ca9747559550cc68b82b8879ff0d78f6d99a",
@@ -77,7 +77,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-docs-analyze"
       },
       "sha256": "aff68c6904d9335b416fc76ddb3f9e4b254459f666a56eb9f238b51201ef7e76",
@@ -90,7 +90,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-docs-plan"
       },
       "sha256": "bbbe474a02572f895869ca153e4b78b61fd760f55fd65b7affadd00ad6da4f4b",
@@ -103,7 +103,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-docs-write"
       },
       "sha256": "cffca1ce83d032b5713579702ef80efbbd3946fb64cd10529ecd2ab9d88efa67",
@@ -120,7 +120,7 @@
       "required": true,
       "source": {
         "package": "@jfdevelops/skills",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "path": "./skills/jf-docs-review"
       },
       "sha256": "484a50c9ba2dff4c1ced031441ac1c18456f2082d88c46475000f275286b3bb2",
